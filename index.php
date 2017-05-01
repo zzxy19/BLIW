@@ -1,0 +1,1 @@
+<link href="bootstrap.min.css" rel="stylesheet"><script type="text/javascript" src="jquery-3.1.1.min.js"></script><script type="text/javascript" src="bootstrap.min.js"></script><?php    include 'query.php'?>

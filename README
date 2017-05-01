@@ -1,0 +1,11 @@
+Some basic git commands:
+     git pull: pull from github
+     git push: push to github
+
+Pipeline for adding local directory to Github:
+     git init
+     git add .
+     git commit -m "Message here"
+     git remote add origin [GithubURL]
+     git remote -v // optional
+     git push origin master
