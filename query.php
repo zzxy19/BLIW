@@ -41,41 +41,41 @@
 
   <body>
     <div>
-      <h3> SQL Query Interface </h3>
+      <h3> SQL Query Interface </h3>h
       <p>Enter you SQL query below:</p>
     </div>
 
     <div>
       <form method="GET">
-	<div>
-	  <textarea name="query" style="width: 400px; height: 100px;"><?php if($query){print "$query";}else{print "SQL query";} ?></textarea>
-	</div>
-	<div>
-	  <input type="submit" value="Submit Query" class="btn btn-primary">
-	</div>
+  <div>
+    <textarea name="query" style="width: 400px; height: 100px;"><?php if($query){print "$query";}else{print "SQL query";} ?></textarea>
+  </div>
+  <div>
+    <input type="submit" value="Submit Query" class="btn btn-primary">
+  </div>
       </form>
     </div>
 
     <div>
       <?php
-	 if($query) {
-	   $db_connection = mysql_connect($db_addr, $username, $password);
-	   mysql_select_db($db, $db_connection);
+   if($query) {
+     $db_connection = mysql_connect($db_addr, $username, $password);
+     mysql_select_db($db, $db_connection);
 
-	   $rs = mysql_query($query, $db_connection);
-	   if (mysql_num_rows($rs) == 0) {
-	     print "No result.";
-	   }
-	   else {
-	     print "<table>";
-	     printFields($rs);
-	     printRows($rs);
-	     print "</table>";
-	   }
+     $rs = mysql_query($query, $db_connection);
+     if (mysql_num_rows($rs) == 0) {
+       print "No result.";
+     }
+     else {
+       print "<table>";
+       printFields($rs);
+       printRows($rs);
+       print "</table>";
+     }
 
-	   mysql_close($db_connection);
-	 }
-	 ?>
+     mysql_close($db_connection);
+   }
+   ?>
     </div>
      
   </body>
