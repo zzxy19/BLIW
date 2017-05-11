@@ -23,14 +23,32 @@
         "select id, concat(first, \" \", last) as Name, sex as Sex, dob as DateOfBirth, dod as DateOfDeath
          from Actor
          having Name like \"%";
-        $queryBrowseActor .= $keyword;
-        $queryBrowseActor .= "%\";";
         $queryBrowseMovie = 
         "select id, title as Title, year as Year, rating as Rating, company as Company
          from Movie
-         having Title like \"%";
-        $queryBrowseMovie .= $keyword;
-        $queryBrowseMovie .= "%\";";
+         where title like \"%";
+        
+        $wordList = explode(" ", $keyword);
+        $firstOne = 1;
+        foreach($wordList as $word) {
+            if ($firstOne == 1) {
+                $queryBrowseActor .= $word;
+                $queryBrowseActor .= "%\"";
+                $queryBrowseMovie .= $word;
+                $queryBrowseMovie .= "%\"";
+                $firstOne = 0;
+            }
+            else {
+                $queryBrowseActor .= " and Name like \"%";
+                $queryBrowseMovie .= " and title like \"%";
+                $queryBrowseActor .= $word;
+                $queryBrowseActor .= "%\"";
+                $queryBrowseMovie .= $word;
+                $queryBrowseMovie .= "%\"";
+            }
+        }
+        $queryBrowseActor .= ";";
+        $queryBrowseMovie .= ";";
 
         $db_connection = mysql_connect($db_addr, $username, $password);
         mysql_select_db($db, $db_connection);
